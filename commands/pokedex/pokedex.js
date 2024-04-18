@@ -1,4 +1,4 @@
-	const { SlashCommandBuilder, Component } = require('discord.js');
+	const { SlashCommandBuilder } = require('discord.js');
 	const fetch = require('node-fetch'); 
 	const { ActionRowBuilder, ButtonBuilder, ButtonStyle, EmbedBuilder } = require('discord.js');
 	const { handleMoveset } = require('./moveset.js');
@@ -55,5 +55,5 @@
 		)
 		
 		const embedEnviado = await interaction.reply({ embeds: [pokedex], components: [botoes], fetchReply: true });
-		handleMoveset(embedEnviado, poke_name);
+		handleMoveset(embedEnviado, poke_name, pokemon, poke_data, interaction);
 		}}
