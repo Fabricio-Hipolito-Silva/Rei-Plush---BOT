@@ -19,7 +19,7 @@ for (const folder of commandFolders) {
 		if ('data' in command && 'execute' in command) {
 			commands.push(command.data.toJSON());
 		} else {
-			console.log(`[WARNING] The command at ${filePath} is missing a required "data" or "execute" property.`);
+			
 		}
 	}
 }
@@ -37,6 +37,7 @@ const rest = new REST().setToken(token);
 			Routes.applicationGuildCommands(clientId, guildId),
 			{ body: commands },
 		);
+		
 
 		console.log(`Successfully reloaded ${data.length} application (/) commands.`);
 	} catch (error) {
