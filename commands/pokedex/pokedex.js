@@ -3,9 +3,6 @@
 	const { ActionRowBuilder, ButtonBuilder, ButtonStyle, EmbedBuilder } = require('discord.js');
 	const { handleMoveset } = require('./moveset.js');
 
-	
-
-
 	module.exports = {
 		data: new SlashCommandBuilder()
 			.setName('pokedex')
@@ -38,13 +35,13 @@
 		let double_dmg_names = typeData.damage_relations.double_damage_from.map(double_dmg_from=> double_dmg_from.name)
 		double_dmg_names = double_dmg_names.map(double_damage_from => double_damage_from.charAt(0).toUpperCase() + double_damage_from.slice(1))
 
-		const irmoveset = new ButtonBuilder()
+		const ir_moveset = new ButtonBuilder()
 				.setCustomId('moveset')
 				.setLabel('Ver Moveset')
 				.setStyle(ButtonStyle.Danger);
 
 			const botoes = new ActionRowBuilder()
-				.addComponents(irmoveset);
+				.addComponents(ir_moveset);
 			
 	const pokedex = new EmbedBuilder()
 		.setColor('Red')
@@ -58,19 +55,5 @@
 		)
 		
 		const embedEnviado = await interaction.reply({ embeds: [pokedex], components: [botoes], fetchReply: true });
-		
-		const filter = (interaction) => interaction.customId === 'moveset';
-		const collector = embedEnviado.createMessageComponentCollector({ filter });
-		
-		const pokedex_moveset = new EmbedBuilder()
-                .setColor('Red')
-                .setTitle(`Moveset do ${poke_name}`)
-			collector.on('collect', async () => {
-				await embedEnviado.edit({ embeds: [pokedex_moveset], components: []});
-				handleMoveset(embedEnviado, poke_name);
-				
-			});
-
-		
-
-	}}
+		handleMoveset(embedEnviado, poke_name);
+		}}
