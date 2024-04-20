@@ -54,6 +54,6 @@
 			{ name: "Weakness", value: `${double_dmg_names}`, inline: false},
 		)
 		
-		const embedEnviado = await interaction.reply({ embeds: [pokedex], components: [botoes], fetchReply: true });
+		let embedEnviado = await interaction.reply({ embeds: [pokedex], components: [botoes], fetchReply: true });
 		handleMoveset(embedEnviado, poke_name, pokemon, poke_data, interaction);
 		}}
